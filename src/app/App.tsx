@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'vitessce/dist/es/production/static/css/index.css';
+
+import { Vitessce } from 'vitessce';
+
+const exampleConfig = require('../configs/example_vitessce_config.json')
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className='App-header'>
+        <span className="App-title">Polyphony</span>
       </header>
+      <Vitessce
+        config={exampleConfig}
+        height={800}
+        theme="light"
+      />
     </div>
   );
 }

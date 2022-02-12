@@ -1,0 +1,74 @@
+{
+    "name": "Eng et al., Nature 2019",
+    "version": "1.0.0",
+    "description": "Transcriptome-scale super-resolved imaging in tissues by RNA seqFISH",
+    "public": true,
+    "datasets": [{
+        "uid": "dries-2019",
+        "name": "Dries 2019",
+        "files": [{
+                "type": "cells",
+                "fileType": "cells.json",
+                "url": "https://s3.amazonaws.com/vitessce-data/0.0.31/master_release/dries/dries.cells.json"
+            },
+            {
+                "type": "cell-sets",
+                "fileType": "cell-sets.json",
+                "url": "https://s3.amazonaws.com/vitessce-data/0.0.31/master_release/dries/dries.cell-sets.json"
+            }
+        ]
+    }],
+    "initStrategy": "auto",
+    "coordinationSpace": {
+        "embeddingType": {
+            "TSNE": "t-SNE",
+            "UMAP": "UMAP"
+        },
+        "embeddingCellSetPolygonsVisible": {
+            "A": false
+        },
+        "embeddingCellSetLabelsVisible": {
+            "A": true
+        },
+        "embeddingCellSetLabelSize": {
+            "A": 16
+        },
+        "embeddingCellRadius": {
+            "A": 5
+        },
+        "embeddingZoom": {
+            "TSNE": 3,
+            "UMAP": 3
+        }
+    },
+    "layout": [{
+            "component": "cellSets",
+            "x": 6,
+            "y": 0,
+            "w": 4,
+            "h": 6
+        },
+        {
+            "component": "cellSetSizes",
+            "x": 6,
+            "y": 4,
+            "w": 4,
+            "h": 5
+        },
+        {
+            "component": "scatterplot",
+            "coordinationScopes": {
+                "embeddingType": "UMAP",
+                "embeddingZoom": "UMAP",
+                "embeddingCellSetLabelsVisible": "A",
+                "embeddingCellSetLabelSize": "A",
+                "embeddingCellSetPolygonsVisible": "A",
+                "embeddingCellRadius": "A"
+            },
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 11
+        }
+    ]
+}
