@@ -1,6 +1,65 @@
-# Getting Started with Create React App
+# polyphony-vis
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setup
+
+Install polyphony-vis dependencies:
+
+```sh
+npm install
+```
+
+Clone https://github.com/ChengFR/vitessce into parent folder such that:
+
+```
+parent
+   polyphony-vis
+   vitessce
+```
+
+Then install Vitessce dependencies:
+
+```sh
+cd ../vitessce
+npm ci
+npm link ../polyphony-vis/node_modules/react
+```
+
+Then build and link to the local Vitessce package:
+
+```sh
+npm run build-lib:esm
+npm link
+cd ../polyphony-vis
+npm link vitessce
+```
+
+
+### After making changes in `../vitessce`
+
+In `../vitessce`:
+
+```sh
+npm run build-lib:esm
+```
+
+In `../polyphony-vis`, you may need to run this again:
+
+```sh
+npm link vitessce
+npm run start
+```
+
+### After NPM install in `../vitessce`
+
+If you `npm install` (generally or for a specific package) in `../vitessce`, you will need to run this again in `../vitessce`:
+
+```sh
+npm link ../polyphony-vis/node_modules/react
+npm run build-lib:esm
+```
+
+## Running the app
+
 
 ## Available Scripts
 
