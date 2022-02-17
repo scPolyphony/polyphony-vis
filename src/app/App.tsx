@@ -1,7 +1,7 @@
 import './App.css';
-import 'vitessce/dist/es/production/static/css/index.css';
+import 'vitessce/dist/esm/index.css';
 
-import { Vitessce } from 'vitessce';
+import { Vitessce } from 'vitessce/dist/esm/index';
 
 const exampleConfig = require('../configs/example_vitessce_config.json')
 
