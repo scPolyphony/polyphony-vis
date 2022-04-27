@@ -1,15 +1,11 @@
 module.exports = {
     webpack: {
-        configure: (webpackConfig) => {
-            webpackConfig.module.rules = [
-                {
-                    test: /\.m?js/,
-                    resolve: {
-                        fullySpecified: false
-                    }
-                }, ...webpackConfig.module.rules
-            ];
-            return webpackConfig;
+        configure: {
+            resolve: {
+                alias: {
+                  'txml/txml': 'txml/dist/txml'
+                },
+            },
         },
-    }
+    },
 };
