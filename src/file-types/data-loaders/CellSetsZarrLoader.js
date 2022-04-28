@@ -1,15 +1,13 @@
-/* eslint-disable no-control-regex */
+import { LoaderResult, AbstractTwoStepLoader } from 'vitessce';
 import { InternMap } from 'internmap';
+
 import {
   treeInitialize,
   nodeAppendChild,
   initializeCellSetColor,
-} from '../../components/sets/cell-set-utils';
-import {
-  SETS_DATATYPE_CELL,
-} from '../../components/sets/constants';
-import AbstractTwoStepLoader from '../AbstractTwoStepLoader';
-import LoaderResult from '../LoaderResult';
+} from '../../view-types/utils';
+
+const SETS_DATATYPE_CELL = 'cell';
 
 export function dataToCellSetsTree(data, options) {
   const [cellNames, cellSets, cellSetScores] = data;

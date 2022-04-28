@@ -1,8 +1,7 @@
 /* eslint-disable */
-import LoaderResult from '../LoaderResult';
-import AbstractTwoStepLoader from '../AbstractTwoStepLoader';
-import DataSourceFetchError from '../errors/DataSourceFetchError';
+import { LoaderResult, AbstractTwoStepLoader } from 'vitessce';
 import { InternMap } from 'internmap';
+import DataSourceFetchError from '../errors/DataSourceFetchError';
 
 const EMBEDDING_SCALE_FACTOR = 5000;
 

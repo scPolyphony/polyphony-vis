@@ -1,8 +1,7 @@
 /* eslint-disable no-underscore-dangle */
+import { LoaderResult, AbstractTwoStepLoader } from 'vitessce';
 import { openArray, slice } from 'zarr';
 import { extent } from 'd3-array';
-import LoaderResult from '../LoaderResult';
-import AbstractTwoStepLoader from '../AbstractTwoStepLoader';
 
 const normalize = (arr) => {
   const [min, max] = extent(arr);

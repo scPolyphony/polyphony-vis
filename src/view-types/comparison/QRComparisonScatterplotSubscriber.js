@@ -10,22 +10,37 @@ import {
   useMultiDatasetCoordination,
   useLoaders,
   useDatasetUids,
+  useSetComponentHover,
+  useSetComponentViewInfo,
+  useComponentViewInfo,
+  useGeneSelection,
+  useExpressionAttrs,
 } from 'vitessce';
 import { LinearInterpolator, TRANSITION_EVENTS } from '@deck.gl/core';
 import { extent } from 'd3-array';
 import isEqual from 'lodash/isEqual';
-import TitleInfo from '../TitleInfo';
-import { pluralize, capitalize } from '../../utils';
+import sum from 'lodash/sum';
+
 import {
-  useDeckCanvasSize, useReady, useUrls, useExpressionValueGetter,
+  PluginViewType,
+  PLUGIN_COMPONENT_COORDINATION_TYPES,
+} from '../../constants';
+import {
+  pluralize,
+  setCellSelection,
+  mergeCellSets,
+  getCellSetPolygons,
+  getCellColors,
+  getPointSizeDevicePixels,
+  getPointOpacity,
+} from '../utils';
+import {
+  useDeckCanvasSize,
+  useReady,
+  useUrls,
+  useExpressionValueGetter,
 } from '../hooks';
-import { setCellSelection, mergeCellSets, PALETTE } from '../utils';
-import { getCellSetPolygons } from '../sets/cell-set-utils';
 import {
-  useCellsData,
-  useCellSetsData,
-  useGeneSelection,
-  useExpressionAttrs,
   useAnnDataStatic,
   useAnnDataDynamic,
   useAnnDataIndices,
@@ -36,25 +51,14 @@ import {
   useAnchorSetOfInterest,
   useAnchorContourOfInterest,
 } from '../data-hooks';
-import { getCellColors } from '../interpolate-colors';
+
 import QRComparisonScatterplot from './QRComparisonScatterplot';
 import ScatterplotTooltipSubscriber from './ScatterplotTooltipSubscriber';
 import QRComparisonScatterplotOptions from './QRComparisonScatterplotOptions';
 import FocusInfo from './FocusInfo';
 import Legend from './Legend';
 import PresetButtons from './PresetButtons';
-import {
-  useSetComponentHover,
-  useSetComponentViewInfo,
-  useComponentViewInfo,
-} from '../../app/state/hooks';
-import {
-  getPointSizeDevicePixels,
-  getPointOpacity,
-} from '../shared-spatial-scatterplot/dynamic-opacity';
-import { COMPONENT_COORDINATION_TYPES } from '../../app/state/coordination';
-import { Component } from '../../app/constants';
-import sum from 'lodash/sum';
+
 
 const setItemIsReady = () => {}; // no op
 const setItemIsNotReady = () => {}; // no op
@@ -105,7 +109,7 @@ export default function QRComparisonScatterplotSubscriber(props) {
   const qryDataset = datasetUids[qryScope];
   // Get "props" from the coordination space.
   const [cValues, cSetters] = useMultiDatasetCoordination(
-    COMPONENT_COORDINATION_TYPES[Component.QR_COMPARISON_SCATTERPLOT],
+    PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_COMPARISON_SCATTERPLOT],
     coordinationScopes,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];
