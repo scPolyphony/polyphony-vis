@@ -1,6 +1,7 @@
-import { Component, CoordinationType } from 'vitessce';
+import { CoordinationType } from 'vitessce';
 
 export const PluginCoordinationType = {
+  CELL_COLOR_ENCODING_PLUGIN: 'cellColorEncodingPlugin',
   ANCHOR_API_STATE: 'anchorApiState',
   MODEL_API_STATE: 'modelApiState',
   ANCHOR_EDIT_TOOL: 'anchorEditTool', // Is the user lassoing? Either 'lasso' or null.
@@ -24,11 +25,17 @@ export const PluginViewType = {
   QR_STATUS: 'qrStatus',
 };
 
+export const PluginFileType = {
+  ANNDATA_POLYPHONY_ZARR: 'anndata-polyphony.zarr',
+};
+
 export const PLUGIN_DEFAULT_COORDINATION_VALUES = {
+  [PluginCoordinationType.CELL_COLOR_ENCODING_PLUGIN]: 'cellSetSelection',
   [PluginCoordinationType.ANCHOR_API_STATE]: { iteration: 1, status: 'success', message: null },
   [PluginCoordinationType.MODEL_API_STATE]: { iteration: 1, status: 'success', message: null },
   [PluginCoordinationType.ANCHOR_EDIT_TOOL]: null,
   [PluginCoordinationType.ANCHOR_EDIT_MODE]: null,
+  [PluginCoordinationType.ANCHOR_SET_FOCUS]: null,
   [PluginCoordinationType.ANCHOR_SET_HIGHLIGHT]: null,
   [PluginCoordinationType.EMBEDDING_VISIBLE]: true,
   [PluginCoordinationType.EMBEDDING_ENCODING]: 'scatterplot',
@@ -41,7 +48,7 @@ export const PLUGIN_DEFAULT_COORDINATION_VALUES = {
 };
 
 export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
-  [Component.QR_COMPARISON_SCATTERPLOT]: [
+  [PluginViewType.QR_COMPARISON_SCATTERPLOT]: [
     CoordinationType.DATASET,
     CoordinationType.EMBEDDING_TYPE,
     CoordinationType.EMBEDDING_ZOOM,
@@ -65,8 +72,8 @@ export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
     CoordinationType.GENE_SELECTION,
     CoordinationType.GENE_EXPRESSION_COLORMAP,
     CoordinationType.GENE_EXPRESSION_COLORMAP_RANGE,
-    CoordinationType.CELL_COLOR_ENCODING,
     CoordinationType.ADDITIONAL_CELL_SETS,
+    PluginCoordinationType.CELL_COLOR_ENCODING_PLUGIN,
     PluginCoordinationType.ANCHOR_API_STATE,
     PluginCoordinationType.MODEL_API_STATE,
     PluginCoordinationType.ANCHOR_EDIT_TOOL,
@@ -81,7 +88,7 @@ export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
     PluginCoordinationType.DEBUG_CELL_TYPES,
     PluginCoordinationType.EMBEDDING_LINKS_SIZE_ENCODING,
   ],
-  [Component.QR_SUPPORTING_SCATTERPLOT_QUERY]: [
+  [PluginViewType.QR_SUPPORTING_SCATTERPLOT_QUERY]: [
     CoordinationType.DATASET,
     CoordinationType.EMBEDDING_TYPE,
     CoordinationType.EMBEDDING_ZOOM,
@@ -105,8 +112,8 @@ export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
     CoordinationType.GENE_SELECTION,
     CoordinationType.GENE_EXPRESSION_COLORMAP,
     CoordinationType.GENE_EXPRESSION_COLORMAP_RANGE,
-    CoordinationType.CELL_COLOR_ENCODING,
     CoordinationType.ADDITIONAL_CELL_SETS,
+    PluginCoordinationType.CELL_COLOR_ENCODING_PLUGIN,
     PluginCoordinationType.ANCHOR_API_STATE,
     PluginCoordinationType.MODEL_API_STATE,
     PluginCoordinationType.ANCHOR_EDIT_TOOL,
@@ -115,7 +122,7 @@ export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
     PluginCoordinationType.ANCHOR_SET_HIGHLIGHT,
     PluginCoordinationType.DEBUG_CELL_TYPES,
   ],
-  [Component.QR_SUPPORTING_SCATTERPLOT_REFERENCE]: [
+  [PluginViewType.QR_SUPPORTING_SCATTERPLOT_REFERENCE]: [
     CoordinationType.DATASET,
     CoordinationType.EMBEDDING_TYPE,
     CoordinationType.EMBEDDING_ZOOM,
@@ -139,8 +146,8 @@ export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
     CoordinationType.GENE_SELECTION,
     CoordinationType.GENE_EXPRESSION_COLORMAP,
     CoordinationType.GENE_EXPRESSION_COLORMAP_RANGE,
-    CoordinationType.CELL_COLOR_ENCODING,
     CoordinationType.ADDITIONAL_CELL_SETS,
+    PluginCoordinationType.CELL_COLOR_ENCODING_PLUGIN,
     PluginCoordinationType.ANCHOR_API_STATE,
     PluginCoordinationType.MODEL_API_STATE,
     PluginCoordinationType.ANCHOR_EDIT_TOOL,
@@ -149,17 +156,17 @@ export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
     PluginCoordinationType.ANCHOR_SET_HIGHLIGHT,
     PluginCoordinationType.DEBUG_CELL_TYPES,
   ],
-  [Component.QR_CELL_SETS]: [
+  [PluginViewType.QR_CELL_SETS]: [
     CoordinationType.DATASET,
     CoordinationType.CELL_SET_SELECTION,
     CoordinationType.CELL_SET_HIGHLIGHT,
     CoordinationType.CELL_SET_COLOR,
-    CoordinationType.CELL_COLOR_ENCODING,
     CoordinationType.ADDITIONAL_CELL_SETS,
     CoordinationType.GENE_SELECTION,
     CoordinationType.GENE_FILTER,
     CoordinationType.GENE_HIGHLIGHT,
     CoordinationType.EMBEDDING_TYPE,
+    PluginCoordinationType.CELL_COLOR_ENCODING_PLUGIN,
     PluginCoordinationType.ANCHOR_API_STATE,
     PluginCoordinationType.MODEL_API_STATE,
     PluginCoordinationType.ANCHOR_EDIT_TOOL,
@@ -170,17 +177,17 @@ export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
     PluginCoordinationType.ANCHOR_SET_FILTER,
     PluginCoordinationType.DEBUG_CELL_TYPES,
   ],
-  [Component.QR_SCORES]: [
+  [PluginViewType.QR_SCORES]: [
     CoordinationType.DATASET,
     CoordinationType.CELL_SET_SELECTION,
     CoordinationType.CELL_SET_HIGHLIGHT,
     CoordinationType.CELL_SET_COLOR,
-    CoordinationType.CELL_COLOR_ENCODING,
     CoordinationType.ADDITIONAL_CELL_SETS,
     CoordinationType.GENE_SELECTION,
     CoordinationType.GENE_FILTER,
     CoordinationType.GENE_HIGHLIGHT,
     CoordinationType.EMBEDDING_TYPE,
+    PluginCoordinationType.CELL_COLOR_ENCODING_PLUGIN,
     PluginCoordinationType.ANCHOR_API_STATE,
     PluginCoordinationType.MODEL_API_STATE,
     PluginCoordinationType.ANCHOR_EDIT_TOOL,

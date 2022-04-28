@@ -379,22 +379,22 @@ export default function QRComparisonScatterplotSubscriber(props) {
     setCellSelection(
       v, qryValues.additionalCellSets, qryValues.cellSetColor,
       qrySetters.setCellSetSelection, qrySetters.setAdditionalCellSets, qrySetters.setCellSetColor,
-      qrySetters.setCellColorEncoding,
+      qrySetters.setCellColorEncodingPlugin,
     );
-  }, [qryValues.additionalCellSets, qryValues.cellSetColor, qrySetters.setCellColorEncoding,
+  }, [qryValues.additionalCellSets, qryValues.cellSetColor, qrySetters.setCellColorEncodingPlugin,
   qrySetters.setAdditionalCellSets, qrySetters.setCellSetColor, qrySetters.setCellSetSelection]);
 
   const setRefCellSelectionProp = useCallback((v) => {
     setCellSelection(
       v, refValues.additionalCellSets, refValues.cellSetColor,
       refSetters.setCellSetSelection, refSetters.setAdditionalCellSets, refSetters.setCellSetColor,
-      refSetters.setCellColorEncoding,
+      refSetters.setCellColorEncodingPlugin,
     );
-  }, [refValues.additionalCellSets, refValues.cellSetColor, refSetters.setCellColorEncoding,
+  }, [refValues.additionalCellSets, refValues.cellSetColor, refSetters.setCellColorEncodingPlugin,
   refSetters.setAdditionalCellSets, refSetters.setCellSetColor, refSetters.setCellSetSelection]);
 
   const qryCellColors = useMemo(() => getCellColors({
-    cellColorEncoding: qryValues.cellColorEncoding,
+    cellColorEncodingPlugin: qryValues.cellColorEncodingPlugin,
     expressionData: qryExpressionData && qryExpressionData[0],
     geneSelection: qryValues.geneSelection,
     cellSets: mergedQryCellSets,
@@ -402,11 +402,11 @@ export default function QRComparisonScatterplotSubscriber(props) {
     cellSetColor: qryValues.cellSetColor,
     expressionDataAttrs: qryAttrs,
     theme,
-  }), [qryValues.cellColorEncoding, qryValues.geneSelection, mergedQryCellSets, theme,
+  }), [qryValues.cellColorEncodingPlugin, qryValues.geneSelection, mergedQryCellSets, theme,
   qryValues.cellSetSelection, qryValues.cellSetColor, qryExpressionData, qryAttrs]);
 
   const refCellColors = useMemo(() => getCellColors({
-    cellColorEncoding: refValues.cellColorEncoding,
+    cellColorEncodingPlugin: refValues.cellColorEncodingPlugin,
     expressionData: refExpressionData && refExpressionData[0],
     geneSelection: refValues.geneSelection,
     cellSets: mergedRefCellSets,
@@ -414,7 +414,7 @@ export default function QRComparisonScatterplotSubscriber(props) {
     cellSetColor: refValues.cellSetColor,
     expressionDataAttrs: refAttrs,
     theme,
-  }), [refValues.cellColorEncoding, refValues.geneSelection, mergedRefCellSets, theme,
+  }), [refValues.cellColorEncodingPlugin, refValues.geneSelection, mergedRefCellSets, theme,
   refValues.cellSetSelection, refValues.cellSetColor, refExpressionData, refAttrs]);
 
 
@@ -563,10 +563,10 @@ export default function QRComparisonScatterplotSubscriber(props) {
             }
           }}
 
-          refCellColorEncoding={refValues.cellColorEncoding}
-          setRefCellColorEncoding={refSetters.setCellColorEncoding}
-          qryCellColorEncoding={qryValues.cellColorEncoding}
-          setQryCellColorEncoding={qrySetters.setCellColorEncoding}
+          refCellColorEncoding={refValues.cellColorEncodingPlugin}
+          setRefCellColorEncoding={refSetters.setCellColorEncodingPlugin}
+          qryCellColorEncoding={qryValues.cellColorEncodingPlugin}
+          setQryCellColorEncoding={qrySetters.setCellColorEncodingPlugin}
 
           cellRadius={qryValues.embeddingCellRadius}
           setCellRadius={qrySetters.setEmbeddingCellRadius}
@@ -645,8 +645,8 @@ export default function QRComparisonScatterplotSubscriber(props) {
         setRefCellHighlight={refSetters.setCellHighlight}
         cellRadius={cellRadius}
         cellOpacity={cellOpacity}
-        refCellColorEncoding={refValues.cellColorEncoding}
-        qryCellColorEncoding={qryValues.cellColorEncoding}
+        refCellColorEncoding={refValues.cellColorEncodingPlugin}
+        qryCellColorEncoding={qryValues.cellColorEncodingPlugin}
         geneExpressionColormap={qryValues.geneExpressionColormap}
         geneExpressionColormapRange={qryValues.geneExpressionColormapRange}
         setComponentHover={() => {
@@ -702,8 +702,8 @@ export default function QRComparisonScatterplotSubscriber(props) {
       />
       <Legend
         visible={qryValues.embeddingLegendsVisible}
-        qryCellColorEncoding={qryValues.cellColorEncoding}
-        refCellColorEncoding={refValues.cellColorEncoding}
+        qryCellColorEncoding={qryValues.cellColorEncodingPlugin}
+        refCellColorEncoding={refValues.cellColorEncodingPlugin}
         
         geneSelection={qryValues.geneSelection}
         geneExpressionColormap={qryValues.geneExpressionColormap}

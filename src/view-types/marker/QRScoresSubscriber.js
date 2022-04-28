@@ -144,10 +144,10 @@ export default function QRScoresSubscriber(props) {
   function setGeneSelectionAndColorEncoding(newSelection) {
     console.log(newSelection);
     qrySetters.setGeneSelection(newSelection);
-    qrySetters.setCellColorEncoding('geneSelection');
+    qrySetters.setCellColorEncodingPlugin('geneSelection');
 
     refSetters.setGeneSelection(newSelection);
-    refSetters.setCellColorEncoding('geneSelection');
+    refSetters.setCellColorEncodingPlugin('geneSelection');
   }
 
   const manager = useMemo(() => {

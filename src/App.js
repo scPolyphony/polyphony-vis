@@ -3,18 +3,19 @@ import {
   Vitessce,
   CoordinationType,
   registerPluginViewType,
-  registerPluginFileType,
   TitleInfo,
   useCoordination,
 } from 'vitessce';
 import registerCoordinationTypes from './coordination-types/index';
 import registerViewTypes from './view-types/index';
-import { myViewConfig } from './my-view-config';
+import registerFileTypes from './file-types/index';
+import { myViewConfig } from './polyphony-view-config';
 import 'vitessce/dist/es/production/static/css/index.css';
 import './index.css';
 
 registerCoordinationTypes();
 registerViewTypes();
+registerFileTypes();
 
 function MyPluginView(props) {
   const {

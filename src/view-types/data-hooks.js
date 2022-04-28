@@ -204,7 +204,7 @@ export function useCellSetsTree(qryCellsIndex, qryFeatureColumns, qryFeatureColu
 
 export function useInitialRefCellSetSelection(mergedQryCellSets, qryValues, qrySetters, parentKey) {
   useEffect(() => {
-    if (qryValues.cellSetColor !== null || qryValues.cellSetSelection !== null || qryValues.cellColorEncoding !== null) {
+    if (qryValues.cellSetColor !== null || qryValues.cellSetSelection !== null || qryValues.cellColorEncodingPlugin !== null) {
       return;
     }
 
@@ -222,9 +222,9 @@ export function useInitialRefCellSetSelection(mergedQryCellSets, qryValues, qryS
         path: path,
       }));
       qrySetters.setCellSetColor(newColors);
-      qrySetters.setCellColorEncoding('cellSetSelection');
+      qrySetters.setCellColorEncodingPlugin('cellSetSelection');
     }
-  }, [mergedQryCellSets, parentKey, qryValues.cellSetColor, qryValues.cellSetSelection, qryValues.cellColorEncoding]);
+  }, [mergedQryCellSets, parentKey, qryValues.cellSetColor, qryValues.cellSetSelection, qryValues.cellColorEncodingPlugin]);
 }
 
 export function useInitialQryCellSetSelection(mergedQryCellSets, qryValues, qrySetters, parentKey, initialRefCellSetColor) {
@@ -250,9 +250,9 @@ export function useInitialQryCellSetSelection(mergedQryCellSets, qryValues, qryS
         };
       });
       qrySetters.setCellSetColor(newColors);
-      qrySetters.setCellColorEncoding('cellSetSelection');
+      qrySetters.setCellColorEncodingPlugin('cellSetSelection');
     }
-  }, [mergedQryCellSets, parentKey, qryValues.cellSetColor, qryValues.cellSetSelection, qryValues.cellColorEncoding, initialRefCellSetColor]);
+  }, [mergedQryCellSets, parentKey, qryValues.cellSetColor, qryValues.cellSetSelection, qryValues.cellColorEncodingPlugin, initialRefCellSetColor]);
 }
 
 export function useAnchors(

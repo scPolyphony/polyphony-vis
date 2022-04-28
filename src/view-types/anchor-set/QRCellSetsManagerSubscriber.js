@@ -238,7 +238,7 @@ export default function QRCellSetsManagerSubscriber(props) {
       });
 
       qrySetters.setCellSetColor(newColors);
-      qrySetters.setCellColorEncoding("cellSetSelection");
+      qrySetters.setCellColorEncodingPlugin("cellSetSelection");
     }
   }
 

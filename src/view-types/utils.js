@@ -102,7 +102,7 @@ export const PALETTE = [
  * @param {function} setCellSetSelection The setter function for cell set selections.
  * @param {function} setAdditionalCellSets The setter function for user-defined cell sets.
  */
-export function setCellSelection(cellSelection, additionalCellSets, cellSetColor, setCellSetSelection, setAdditionalCellSets, setCellSetColor, setCellColorEncoding, prefix = 'Selection ') {
+export function setCellSelection(cellSelection, additionalCellSets, cellSetColor, setCellSetSelection, setAdditionalCellSets, setCellSetColor, setCellColorEncodingPlugin, prefix = 'Selection ') {
   const CELL_SELECTIONS_LEVEL_ZERO_NAME = 'My Selections';
 
   const selectionsLevelZeroNode = additionalCellSets?.tree.find(
@@ -143,7 +143,7 @@ export function setCellSelection(cellSelection, additionalCellSets, cellSetColor
     },
   ]);
   setCellSetSelection([nextPath]);
-  setCellColorEncoding('cellSetSelection');
+  setCellColorEncodingPlugin('cellSetSelection');
 }
 
 export function mergeCellSets(cellSets, additionalCellSets) {
@@ -476,20 +476,20 @@ export function treeToCellColorsBySetNames(currTree, selectedNamePaths, cellSetC
  * @param {array} params.geneSelection Array of selected gene IDs.
  * @param {object} params.cellSets The cell sets tree.
  * @param {object} params.cellSetSelection Selected cell sets.
- * @param {string} params.cellColorEncoding Which to use for
+ * @param {string} params.cellColorEncodingPlugin Which to use for
  * coloring: gene expression or cell sets?
  * @returns {Map} Mapping from cell IDs to [r, g, b] color arrays.
  */
 export function getCellColors(params) {
   const {
-    cellColorEncoding,
+    cellColorEncodingPlugin,
     expressionData,
     cellSets, cellSetSelection,
     cellSetColor,
     expressionDataAttrs,
     theme,
   } = params;
-  if (cellColorEncoding === 'geneSelection' && expressionData && expressionDataAttrs) {
+  if (cellColorEncodingPlugin === 'geneSelection' && expressionData && expressionDataAttrs) {
     // TODO: allow other color maps.
     const geneExpColormap = interpolatePlasma;
     const colors = new Map();
@@ -499,7 +499,7 @@ export function getCellColors(params) {
       colors.set(expressionDataAttrs.rows[i], cellColor);
     }
     return colors;
-  } if (cellColorEncoding === 'cellSetSelection' && cellSetSelection && cellSets) {
+  } if (cellColorEncodingPlugin === 'cellSetSelection' && cellSetSelection && cellSets) {
     // Cell sets can potentially lack set colors since the color property
     // is not a required part of the schema.
     // The `initializeSets` function fills in any empty colors
