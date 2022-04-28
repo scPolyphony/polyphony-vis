@@ -2,6 +2,7 @@
 import { LoaderResult, AbstractTwoStepLoader } from 'vitessce';
 import { InternMap } from 'internmap';
 import DataSourceFetchError from '../errors/DataSourceFetchError';
+import { qryAnnDataOptions, refAnnDataOptions } from '../../polyphony-view-config';
 
 const EMBEDDING_SCALE_FACTOR = 5000;
 
@@ -48,6 +49,14 @@ export default class CellsZarrLoader extends AbstractTwoStepLoader {
 
   constructor(dataSource, params) {
     super(dataSource, params);
+
+    if(params.url.endsWith('reference.zarr')) {
+      this.options = refAnnDataOptions;
+    } else if(params.url.endsWith('query.zarr')) {
+      this.options = qryAnnDataOptions;
+    } else {
+      throw new Error('Expected zarr url to end with reference.zarr or query.zarr');
+    }
 
     const { apiRoot } = this.options || {};
     this.anchorApi = `${apiRoot}/anchor`;

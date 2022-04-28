@@ -1,6 +1,11 @@
 // const path = require('path');
 
 module.exports = {
+    babel: {
+        plugins: [
+            "glsl",
+        ],
+    },
     webpack: {
         configure: (webpackConfig, { env, paths }) => {
             webpackConfig.resolve = {
