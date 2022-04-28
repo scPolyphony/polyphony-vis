@@ -8,6 +8,17 @@ import createContext from 'zustand/context';
 import shallow from 'zustand/shallow';
 import every from 'lodash/every';
 
+import { VITESSCE_CONTAINER } from './utils';
+
+
+export function useVitessceContainer(ref) {
+  return useCallback(() => {
+    if (ref.current) {
+      return ref.current.closest(`.${VITESSCE_CONTAINER}`);
+    }
+    return null;
+  }, [ref]);
+}
 
 /**
  * The grid size store can be used to store a

@@ -279,7 +279,6 @@ export function useAnchors(
     } else {
       setResult(null);
       if (isRequired) {
-        warn(new LoaderNotFoundError(dataset, 'anchors', null, null), setWarning);
         setStatus(STATUS_ERROR);
       } else {
         setItemIsReady('anchors');

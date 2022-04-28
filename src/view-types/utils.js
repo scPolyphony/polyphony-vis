@@ -8,6 +8,25 @@ import concaveman from 'concaveman';
 import { OrthographicView } from 'deck.gl';
 import clamp from 'lodash/clamp';
 
+export const VITESSCE_CONTAINER = 'vitessce-container';
+
+// List of the GLSL colormaps available,
+// to validate against before string replacing.
+export const GLSL_COLORMAPS = [
+  'plasma',
+  'viridis',
+  'jet',
+  'cool',
+  'winter',
+  'copper',
+  'bluered',
+  'rdbu',
+  'picnic',
+  'portland',
+];
+export const GLSL_COLORMAP_DEFAULT = 'winter';
+export const COLORMAP_SHADER_PLACEHOLDER = 'COLORMAP_FUNC';
+
 /**
  * Select between a singular and plural version of a word,
  * based on an item count.
@@ -28,6 +47,8 @@ export function pluralize(singular, plural, count) {
 export function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
+
+export const DEFAULT_GL_OPTIONS = { webgl2: true };
 
 export function getNextNumberedNodeName(nodes, prefix) {
   let i = 1;

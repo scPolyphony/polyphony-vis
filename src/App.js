@@ -8,11 +8,13 @@ import {
   useCoordination,
 } from 'vitessce';
 import registerCoordinationTypes from './coordination-types/index';
+import registerViewTypes from './view-types/index';
 import { myViewConfig } from './my-view-config';
 import 'vitessce/dist/es/production/static/css/index.css';
 import './index.css';
 
 registerCoordinationTypes();
+registerViewTypes();
 
 function MyPluginView(props) {
   const {

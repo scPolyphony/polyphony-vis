@@ -4,22 +4,18 @@ import { COORDINATE_SYSTEM } from '@deck.gl/core'; // eslint-disable-line import
 import { PolygonLayer, TextLayer, ScatterplotLayer, PointCloudLayer, LineLayer } from '@deck.gl/layers'; // eslint-disable-line import/no-extraneous-dependencies
 import { HeatmapLayer } from '@deck.gl/aggregation-layers'; // eslint-disable-line import/no-extraneous-dependencies
 import { DataFilterExtension } from '@deck.gl/extensions';
-import ContourLayer from '../../layers/contour/ContourLayer';
-
 import { forceSimulation } from 'd3-force';
 import bboxPolygon from '@turf/bbox-polygon';
-import { getSelectionLayers } from '../../layers';
-import { cellLayerDefaultProps, getDefaultColor } from '../utils';
-import {
-  createCellsQuadTree,
-} from '../shared-spatial-scatterplot/quadtree';
-import AbstractSpatialOrScatterplot from '../shared-spatial-scatterplot/AbstractSpatialOrScatterplot';
-import { forceCollideRects } from '../shared-spatial-scatterplot/force-collide-rects';
-import { ScaledExpressionExtension, SelectionExtension } from '../../layer-extensions';
-import { Matrix4 } from "@math.gl/core";
-import { interpolateReds, interpolateGreys } from "d3-scale-chromatic";
-import { color } from "d3-color";
-import { interpolate } from "d3-interpolate";
+import { interpolateGreys } from "d3-scale-chromatic";
+
+import { getDefaultColor } from '../utils';
+import { createCellsQuadTree } from './quadtree';
+import { forceCollideRects } from './force-collide-rects';
+import { getSelectionLayers } from './selection-utils';
+import AbstractSpatialOrScatterplot from './AbstractSpatialOrScatterplot';
+import ContourLayer from './ContourLayer';
+import ScaledExpressionExtension from './ScaledExpressionExtension/index';
+
 
 const REF_LAYER_ID = 'ref-scatterplot';
 const QRY_LAYER_ID = 'qry-scatterplot';

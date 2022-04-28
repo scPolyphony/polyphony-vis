@@ -5,12 +5,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Slider from '@material-ui/core/Slider';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import { capitalize } from '../../utils';
-import { useStyles } from '../shared-plot-options/styles';
-import OptionsContainer from '../shared-plot-options/OptionsContainer';
-import OptionSelect from '../shared-plot-options/OptionSelect';
-import CellColorEncodingOption from '../shared-plot-options/CellColorEncodingOption';
-import { GLSL_COLORMAPS } from '../../layers/constants';
+
+import { capitalize, GLSL_COLORMAPS } from '../utils';
+import { useStyles } from '../options/styles';
+import OptionsContainer from '../options/OptionsContainer';
+import OptionSelect from '../options/OptionSelect';
+import CellColorEncodingOption from '../options/CellColorEncodingOption';
 
 export default function QRComparisonScatterplotOptions(props) {
   const {

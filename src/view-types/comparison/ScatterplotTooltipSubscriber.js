@@ -1,7 +1,8 @@
 import React from 'react';
+import { useComponentHover, useComponentViewInfo } from 'vitessce';
+
 import Tooltip2D from '../tooltip/Tooltip2D';
 import TooltipContent from '../tooltip/TooltipContent';
-import { useComponentHover, useComponentViewInfo } from '../../app/state/hooks';
 
 export default function ScatterplotTooltipSubscriber(props) {
   const {
