@@ -10,7 +10,6 @@ import registerCoordinationTypes from './coordination-types/index';
 import registerViewTypes from './view-types/index';
 import registerFileTypes from './file-types/index';
 import { myViewConfig } from './polyphony-view-config';
-import 'vitessce/dist/es/production/static/css/index.css';
 
 registerCoordinationTypes();
 registerViewTypes();
