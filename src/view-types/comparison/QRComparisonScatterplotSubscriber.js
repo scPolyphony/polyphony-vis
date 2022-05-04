@@ -13,8 +13,6 @@ import {
   useSetComponentHover,
   useSetComponentViewInfo,
   useComponentViewInfo,
-  useGeneSelection,
-  useExpressionAttrs,
 } from 'vitessce';
 import { LinearInterpolator, TRANSITION_EVENTS } from '@deck.gl/core';
 import { extent } from 'd3-array';
@@ -41,6 +39,8 @@ import {
   useExpressionValueGetter,
 } from '../hooks';
 import {
+  useGeneSelection,
+  useExpressionAttrs,
   useAnnDataStatic,
   useAnnDataDynamic,
   useAnnDataIndices,

@@ -123,6 +123,7 @@ export function useReady(statusValues) {
   }, []);
 
   const isReady = useMemo(() => {
+    console.log(statusValues);
     return every(statusValues, val => val === 'success');
   }, statusValues);
 
