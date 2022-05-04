@@ -1,19 +1,25 @@
 /* eslint-disable */
 import React, { useCallback, useMemo } from 'react';
 import {
-  useMultiDatasetCoordination, useDatasetUids,
-  useWarning, useLoaders,
-} from '../../app/state/hooks';
+  useMultiDatasetCoordination,
+  useDatasetUids,
+  useWarning,
+  useLoaders,
+} from 'vitessce';
+import sum from 'lodash/sum';
+
+import {
+  PLUGIN_COMPONENT_COORDINATION_TYPES,
+  PluginViewType,
+} from '../../constants';
 import {
   useAnchors,
   useAnnDataIndices,
 } from '../data-hooks';
-import { useUrls, useReady } from '../hooks';
-import { COMPONENT_COORDINATION_TYPES } from '../../app/state/coordination';
+import { useReady } from '../hooks';
 import TitleInfo from '../TitleInfo';
-import Status from './Status';
-import { Component } from '../../app/constants';
-import sum from 'lodash/sum';
+import QRStatus from './QRStatus';
+
 
 const setItemIsReady = () => {}; // no op
 const setItemIsNotReady = () => {}; // no op
@@ -31,7 +37,7 @@ const resetReadyItems = () => {}; // no op
  * to call when the component has been removed from the grid.
  * @param {string} props.title The component title.
  */
-export default function StatusSubscriber(props) {
+export default function QRStatusSubscriber(props) {
   const {
     coordinationScopes,
     removeGridComponent,
@@ -51,7 +57,7 @@ export default function StatusSubscriber(props) {
 
   // Get "props" from the coordination space.
   const [cValues, cSetters] = useMultiDatasetCoordination(
-    COMPONENT_COORDINATION_TYPES[Component.STATUS],
+    PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_STATUS],
     coordinationScopes,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];
@@ -121,7 +127,7 @@ export default function StatusSubscriber(props) {
       removeGridComponent={removeGridComponent}
       isReady={isReady}
     >
-      <Status
+      <QRStatus
         warn={warn}
         numAnchorSetsConfirmed={numAnchorSetsConfirmed}
         numAnchorSetsTotal={numAnchorSetsTotal}

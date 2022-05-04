@@ -48,6 +48,20 @@ export const PLUGIN_DEFAULT_COORDINATION_VALUES = {
 };
 
 export const PLUGIN_COMPONENT_COORDINATION_TYPES = {
+  [PluginViewType.QR_STATUS]: [
+    CoordinationType.DATASET,
+    CoordinationType.CELL_HIGHLIGHT,
+    CoordinationType.GENE_HIGHLIGHT,
+    CoordinationType.CELL_SET_HIGHLIGHT,
+    PluginCoordinationType.ANCHOR_API_STATE,
+    PluginCoordinationType.MODEL_API_STATE,
+    PluginCoordinationType.ANCHOR_EDIT_TOOL,
+    PluginCoordinationType.ANCHOR_EDIT_MODE,
+    PluginCoordinationType.ANCHOR_SET_FOCUS,
+    PluginCoordinationType.ANCHOR_SET_HIGHLIGHT,
+    PluginCoordinationType.ANCHOR_SET_FILTER,
+    PluginCoordinationType.DEBUG_CELL_TYPES,
+  ],
   [PluginViewType.QR_COMPARISON_SCATTERPLOT]: [
     CoordinationType.DATASET,
     CoordinationType.EMBEDDING_TYPE,

@@ -231,8 +231,8 @@ export const myViewConfig = {
           },
     },
     layout: [
-        /*{
-            component: 'status',
+        {
+            component: 'qrStatus',
             coordinationScopes: {
               dataset: ['REFERENCE', 'QUERY'],
               cellSetSelection: { REFERENCE: 'ref', QUERY: 'qry' },
@@ -248,7 +248,7 @@ export const myViewConfig = {
             y: 0,
             w: 12,
             h: 1,
-          },*/
+          },
           {
             component: 'qrCellSets',
             coordinationScopes: {

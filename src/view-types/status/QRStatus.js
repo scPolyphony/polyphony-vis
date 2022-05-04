@@ -98,7 +98,7 @@ function CircularProgressWithLabel(props) {
   );
 }
 
-export default function Status(props) {
+export default function QRStatus(props) {
   const {
     warn,
 

@@ -1,25 +1,9 @@
 /* eslint-disable */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useMemo, useRef, useEffect } from 'react';
-import * as _ from 'lodash';
-import isEqual from 'lodash/isEqual';
 import range from 'lodash/range';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowRight from '@material-ui/icons/ArrowRight';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import flatten from 'lodash/flatten';
+import max from 'lodash/max';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import MoreVert from '@material-ui/icons/MoreVert';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-
-import {
-  pathToKey,
-  getDefaultColor,
-  nodeToRenderProps,
-} from '../utils';
-import { useVitessceContainer } from '../hooks';
 
 
 const barWidth = 130;
@@ -108,8 +92,8 @@ export default function QRScores(props) {
     setGeneSelection
   } = props;
 
-  const geneList = _.flatten(['shared', 'qry', 'ref'].map(group => topGenes[group]));
-  const maxScore = _.max(geneList.map(gene => Math.max(gene.score.qry, gene.score.ref)));
+  const geneList = flatten(['shared', 'qry', 'ref'].map(group => topGenes[group]));
+  const maxScore = max(geneList.map(gene => Math.max(gene.score.qry, gene.score.ref)));
   const xScale = (score) => Math.max(score, 0) / maxScore * barWidth / 2;
 
   return (

@@ -4,6 +4,7 @@ import { PluginViewType, PLUGIN_COMPONENT_COORDINATION_TYPES } from '../constant
 import QRComparisonScatterplotSubscriber from './comparison/QRComparisonScatterplotSubscriber';
 import QRCellSetsManagerSubscriber from './anchor-set/QRCellSetsManagerSubscriber';
 import QRScoresSubscriber from './marker/QRScoresSubscriber';
+import QRStatusSubscriber from './status/QRStatusSubscriber';
 
 export default function register() {
   registerPluginViewType(
@@ -20,5 +21,10 @@ export default function register() {
     PluginViewType.QR_SCORES,
     QRScoresSubscriber,
     PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_SCORES],
+  );
+  registerPluginViewType(
+    PluginViewType.QR_STATUS,
+    QRStatusSubscriber,
+    PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_STATUS],
   );
 }
