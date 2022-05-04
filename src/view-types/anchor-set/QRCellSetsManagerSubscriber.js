@@ -5,29 +5,39 @@ import React, {
   useCallback,
   useMemo,
 } from 'react';
-import isEqual from 'lodash/isEqual';
 import {
   useMultiDatasetCoordination,
   useLoaders,
   useSetWarning,
   useDatasetUids,
-} from '../../app/state/hooks';
-import { COMPONENT_COORDINATION_TYPES } from '../../app/state/coordination';
-import QRCellSetsManager from './QRCellSetsManager';
-import TitleInfo from '../TitleInfo';
+} from 'vitessce';
+import isEqual from 'lodash/isEqual';
+import range from 'lodash/range';
+import sumBy from 'lodash/sumBy';
+
+import {
+  PluginViewType,
+  PLUGIN_COMPONENT_COORDINATION_TYPES,
+} from '../../constants';
 import { useUrls, useReady } from '../hooks';
 import {
-  useAnnDataStatic, useAnnDataDynamic, useAnnDataIndices,
-  useDiffGeneNames, useCellSetsTree,
+  useAnnDataStatic,
+  useAnnDataDynamic,
+  useAnnDataIndices,
+  useDiffGeneNames,
+  useCellSetsTree,
   useAnchors,
   useInitialRefCellSetSelection,
   useInitialQryCellSetSelection,
   useProcessedAnchorSets,
 } from '../data-hooks';
-import { Component } from '../../app/constants';
-import { setCellSelection, mergeCellSets, PALETTE } from '../utils';
-import range from 'lodash/range';
-import sumBy from 'lodash/sumBy';
+import {
+  setCellSelection,
+  mergeCellSets,
+  PALETTE,
+} from '../utils';
+import TitleInfo from '../TitleInfo';
+import QRCellSetsManager from './QRCellSetsManager';
 
 const setItemIsReady = () => {}; // no op
 const setItemIsNotReady = () => {}; // no op
@@ -38,7 +48,6 @@ const CELL_SETS_DATA_TYPES = ['cells', 'cell-sets', 'expression-matrix'];
 const QRY_PREDICTION_KEY = 'Prediction';
 const QRY_LABEL_KEY = 'Label';
 const REF_CELL_TYPE_KEY = 'Cell Type';
-
 
 
 /**
@@ -74,7 +83,7 @@ export default function QRCellSetsManagerSubscriber(props) {
 
   // Get "props" from the coordination space.
   const [cValues, cSetters] = useMultiDatasetCoordination(
-    COMPONENT_COORDINATION_TYPES[Component.QR_CELL_SETS],
+    PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_CELL_SETS],
     coordinationScopes,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];

@@ -393,7 +393,7 @@ export function useInitialRefCellSetSelection(mergedQryCellSets, qryValues, qryS
 
 export function useInitialQryCellSetSelection(mergedQryCellSets, qryValues, qrySetters, parentKey, initialRefCellSetColor) {
   useEffect(() => {
-    if (qryValues.cellSetColor !== null || qryValues.cellSetSelection !== null || qryValues.cellColorEncoding !== null || !initialRefCellSetColor) {
+    if (qryValues.cellSetColor !== null || qryValues.cellSetSelection !== null || qryValues.cellColorEncodingPlugin !== null || !initialRefCellSetColor) {
       return;
     }
 

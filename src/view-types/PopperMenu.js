@@ -77,7 +77,7 @@ export const muiTheme = {
   }),
 };
 
-export function PopperMenu(props) {
+export default function PopperMenu(props) {
   const {
     buttonIcon,
     open,

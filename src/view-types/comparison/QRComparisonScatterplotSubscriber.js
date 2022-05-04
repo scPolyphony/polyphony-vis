@@ -6,7 +6,6 @@ import React, {
   useMemo,
 } from 'react';
 import {
-  TitleInfo,
   useMultiDatasetCoordination,
   useLoaders,
   useDatasetUids,
@@ -23,6 +22,7 @@ import {
   PluginViewType,
   PLUGIN_COMPONENT_COORDINATION_TYPES,
 } from '../../constants';
+import TitleInfo from '../TitleInfo';
 import {
   pluralize,
   setCellSelection,

@@ -248,7 +248,7 @@ export const myViewConfig = {
             y: 0,
             w: 12,
             h: 1,
-          },
+          },*/
           {
             component: 'qrCellSets',
             coordinationScopes: {
@@ -268,7 +268,7 @@ export const myViewConfig = {
             w: 5,
             h: 6,
           },
-          {
+          /*{
             component: 'qrScores',
             coordinationScopes: {
               dataset: ['REFERENCE', 'QUERY'],
