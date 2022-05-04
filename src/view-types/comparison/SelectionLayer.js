@@ -1,4 +1,3 @@
-/* eslint-disable */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-underscore-dangle */
 // File adopted from nebula.gl's SelectionLayer

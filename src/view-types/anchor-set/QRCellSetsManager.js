@@ -1,23 +1,15 @@
-/* eslint-disable */
 /* eslint-disable no-underscore-dangle */
-import React, { useState, useMemo, useRef, useEffect } from 'react';
-import * as _ from 'lodash'
-
+import React, { useState } from 'react';
+import flatten from 'lodash/flatten';
+import max from 'lodash/max';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import ArrowRight from '@material-ui/icons/ArrowRight';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import MoreVert from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Sort from '@material-ui/icons/Sort'
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { ReactComponent as RadixSortSVG } from '../../assets/qr/radix_sort.svg';
-import { ReactComponent as FASortSVG } from '../../assets/qr/fontawesome_sort.svg';
 
 const useStyles = makeStyles((theme) => ({
   arrowButtonRoot: {
@@ -55,29 +47,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgb(231, 231, 231)', // very light gray
   }
 }));
-
-function SignificanceIcon(props) {
-  const { inRef, inQry, scoreRef, scoreQry, geneName, yScale, showGeneName } = props;
-
-  const scoreRefStr = Number(scoreRef).toFixed(2);
-  const scoreQryStr = Number(scoreQry).toFixed(2);
-  const className = (inRef && inQry) ? 'inBoth' : (inRef ? 'inRef' : 'inQry');
-
-  return (<div className="iconContainer">
-
-    <div className={`geneIcon ${true ? "withGeneName" : "withoutGeneName"}`}>
-      <div className={`geneIconOuter ${className}`} style={{
-        height: yScale ? yScale(scoreQry) : 30,
-      }} />
-      <div className="geneName">{geneName}</div>
-    </div>
-    <div className="signifIconTooltip">
-      {geneName}<br />
-      Score in Query: {inQry ? (<b>{scoreQryStr}</b>) : (<span>{scoreQryStr}</span>)}<br />
-      Score in Reference: {inRef ? (<b>{scoreRefStr}</b>) : (<span>{scoreRefStr}</span>)}
-    </div>
-  </div>);
-}
 
 function FullCircularProgress(props) {
   const { value } = props;
@@ -227,9 +196,6 @@ function TableRowLeft(props) {
 export default function QRCellSetsManager(props) {
   const {
     qryTopGenesLists,
-
-    showGeneName,
-
     onFocusAnchors,
     onHighlightAnchors,
     onDeleteAnchors,
@@ -237,13 +203,12 @@ export default function QRCellSetsManager(props) {
     onEditAnchors,
   } = props;
 
-  const classes = useStyles();
   const blockIds = ["user_selection", "unjustified", "confirmed"];
   let xScale = undefined;
   if (qryTopGenesLists) {
-    const anchors = _.flatten(Object.entries(qryTopGenesLists).map(([groupIdx, groupContent]) =>
+    const anchors = flatten(Object.entries(qryTopGenesLists).map(([groupIdx, groupContent]) =>
       Object.entries(groupContent).map(([anchorId, anchorContent]) => anchorContent)));
-    const maxDist = _.max(anchors.map(anchor => anchor.latentDist));
+    const maxDist = max(anchors.map(anchor => anchor.latentDist));
     xScale = (latentDist) => Math.max(0, latentDist / maxDist * (barWidth - 4));
   }
 

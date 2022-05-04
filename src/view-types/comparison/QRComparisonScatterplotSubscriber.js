@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {
   useState,
   useEffect,
@@ -13,7 +12,10 @@ import {
   useSetComponentViewInfo,
   useComponentViewInfo,
 } from 'vitessce';
-import { LinearInterpolator, TRANSITION_EVENTS } from '@deck.gl/core';
+import {
+  LinearInterpolator,
+  TRANSITION_EVENTS,
+} from '@deck.gl/core';
 import { extent } from 'd3-array';
 import isEqual from 'lodash/isEqual';
 import sum from 'lodash/sum';
@@ -51,7 +53,6 @@ import {
   useAnchorSetOfInterest,
   useAnchorContourOfInterest,
 } from '../data-hooks';
-
 import QRComparisonScatterplot from './QRComparisonScatterplot';
 import ScatterplotTooltipSubscriber from './ScatterplotTooltipSubscriber';
 import QRComparisonScatterplotOptions from './QRComparisonScatterplotOptions';

@@ -1,5 +1,4 @@
-/* eslint-disable */
-import React, { useState, useMemo, useRef, useEffect } from 'react';
+import React from 'react';
 import range from 'lodash/range';
 import flatten from 'lodash/flatten';
 import max from 'lodash/max';

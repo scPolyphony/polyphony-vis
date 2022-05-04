@@ -1,8 +1,5 @@
-/* eslint-disable */
 import React, {
   useEffect,
-  useState,
-  useCallback,
   useMemo,
 } from 'react';
 import {
@@ -16,7 +13,6 @@ import {
   PluginViewType,
   PLUGIN_COMPONENT_COORDINATION_TYPES,
 } from '../../constants';
-import { mergeCellSets, PALETTE } from '../utils';
 import {
   useAnnDataStatic, useAnnDataDynamic, useAnnDataIndices,
   useDiffGeneNames, useCellSetsTree,
@@ -25,9 +21,8 @@ import {
   useCompressedAnchors,
   useSeperatedGenes,
   useGeneSelection,
-  useExpressionAttrs,
 } from '../data-hooks';
-import { useUrls, useReady } from '../hooks';
+import { useReady } from '../hooks';
 import TitleInfo from '../TitleInfo';
 import QRScores from './QRScores';
 
@@ -35,7 +30,6 @@ import QRScores from './QRScores';
 const setItemIsReady = () => {}; // no op
 const setItemIsNotReady = () => {}; // no op
 const resetReadyItems = () => {}; // no op
-
 
 /**
  * A subscriber wrapper around the SetsManager component
@@ -80,11 +74,8 @@ export default function QRScoresSubscriber(props) {
   const modelIteration = qryValues.modelApiState.iteration;
   const modelStatus = qryValues.modelApiState.status;
 
-  const [urls, addUrl, resetUrls] = useUrls();
-
   // Reset file URLs and loader progress when the dataset has changed.
   useEffect(() => {
-    resetUrls();
     resetReadyItems();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loaders, qryDataset, refDataset]);

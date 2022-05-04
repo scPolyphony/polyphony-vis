@@ -1,12 +1,14 @@
-import uuidv4 from 'uuid/v4';
-import isNil from 'lodash/isNil';
-import isEqual from 'lodash/isEqual';
-import range from 'lodash/range';
-import { featureCollection as turfFeatureCollection, point as turfPoint } from '@turf/helpers';
+import { OrthographicView } from 'deck.gl';
+import {
+  featureCollection as turfFeatureCollection,
+  point as turfPoint,
+} from '@turf/helpers';
 import centroid from '@turf/centroid';
 import concaveman from 'concaveman';
-import { OrthographicView } from 'deck.gl';
+import isNil from 'lodash/isNil';
+import isEqual from 'lodash/isEqual';
 import clamp from 'lodash/clamp';
+
 
 export const VITESSCE_CONTAINER = 'vitessce-container';
 
@@ -17,7 +19,6 @@ export const SECONDARY_CARD = `${CARD} bg-secondary`;
 export const BLACK_CARD = `${CARD} bg-black`;
 export const TITLE_CARD = 'title';
 export const SCROLL_CARD = `${PRIMARY_CARD} scroll`;
-
 
 // List of the GLSL colormaps available,
 // to validate against before string replacing.
@@ -232,22 +233,6 @@ export function nodeToHeight(currNode, level = 0) {
   const newLevel = level + 1;
   const childrenHeights = currNode.children.map(c => nodeToHeight(c, newLevel));
   return Math.max(...childrenHeights, newLevel);
-}
-
-/**
- * Get the size associated with a particular node.
- * Recursive.
- * @param {object} currNode A node object.
- * @returns {number} The length of all the node's children
- */
- export function getNodeLength(currNode) {
-  if (!currNode) {
-    return 0;
-  }
-  if (!currNode.children) {
-    return (currNode.set?.length || 0);
-  }
-  return currNode.children.reduce((acc, curr) => acc + getNodeLength(curr), 0);
 }
 
 /**
@@ -589,31 +574,4 @@ export function getPointOpacity(zoom, xRange, yRange, width, height, numCells, a
   const alpha = ((rho * W * H) / N) * (Y0 / Y) * (X0 / X);
   const pointOpacity = clamp(alpha, 1.01 / 255, 1.0);
   return pointOpacity;
-}
-
-export const PATH_SEP = '___';
-
-export function pathToKey(path) {
-  return path.join(PATH_SEP);
-}
-
-/**
- * For convenience, get an object with information required
- * to render a node as a component.
- * @param {object} node A node to be rendered.
- * @returns {object} An object containing properties required
- * by the TreeNode render functions.
- */
- export function nodeToRenderProps(node, path, cellSetColor) {
-  const level = path.length - 1;
-  return {
-    title: node.name,
-    nodeKey: pathToKey(path),
-    path,
-    size: getNodeLength(node),
-    color: cellSetColor?.find(d => isEqual(d.path, path))?.color,
-    level,
-    isLeaf: (!node.children || node.children.length === 0) && Boolean(node.set),
-    height: nodeToHeight(node),
-  };
 }

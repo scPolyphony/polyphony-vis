@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useCallback } from 'react';
 import debounce from 'lodash/debounce';
 import Checkbox from '@material-ui/core/Checkbox';

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { COORDINATE_SYSTEM } from '@deck.gl/core'; // eslint-disable-line import/no-extraneous-dependencies
 import SelectionLayer from './SelectionLayer';
 

@@ -1,7 +1,5 @@
-/* eslint-disable */
 import React, { PureComponent } from 'react';
 import DeckGL, { OrthographicView, OrbitView } from 'deck.gl';
-import ToolMenu from './ToolMenu';
 import { DEFAULT_GL_OPTIONS } from '../utils';
 import { getCursor, getCursorWithTool } from './cursor';
 import { SELECTION_TYPE } from 'nebula.gl';
@@ -26,7 +24,6 @@ export default class AbstractSpatialOrScatterplot extends PureComponent {
     this.onViewStateChange = this.onViewStateChange.bind(this);
     this.onInitializeViewInfo = this.onInitializeViewInfo.bind(this);
     this.onWebGLInitialized = this.onWebGLInitialized.bind(this);
-    this.onToolChange = this.onToolChange.bind(this);
     this.onHover = this.onHover.bind(this);
   }
 
@@ -68,20 +65,6 @@ export default class AbstractSpatialOrScatterplot extends PureComponent {
    */
   onWebGLInitialized(gl) {
     this.setState({ gl });
-  }
-
-  /**
-   * Called by the ToolMenu buttons.
-   * Emits the new tool value to the
-   * `onToolChange` prop.
-   * @param {string} tool Name of tool.
-   */
-  onToolChange(tool) {
-    const { onToolChange: onToolChangeProp } = this.props;
-    this.setState({ tool });
-    if (onToolChangeProp) {
-      onToolChangeProp(tool);
-    }
   }
 
   /**

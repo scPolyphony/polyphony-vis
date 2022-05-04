@@ -1,7 +1,5 @@
-/* eslint-disable */
 import React, {
   useEffect,
-  useState,
   useCallback,
   useMemo,
 } from 'react';
@@ -11,15 +9,12 @@ import {
   useSetWarning,
   useDatasetUids,
 } from 'vitessce';
-import isEqual from 'lodash/isEqual';
-import range from 'lodash/range';
-import sumBy from 'lodash/sumBy';
 
 import {
   PluginViewType,
   PLUGIN_COMPONENT_COORDINATION_TYPES,
 } from '../../constants';
-import { useUrls, useReady } from '../hooks';
+import { useReady } from '../hooks';
 import {
   useAnnDataStatic,
   useAnnDataDynamic,
@@ -32,23 +27,20 @@ import {
   useProcessedAnchorSets,
 } from '../data-hooks';
 import {
-  setCellSelection,
   mergeCellSets,
   PALETTE,
 } from '../utils';
 import TitleInfo from '../TitleInfo';
 import QRCellSetsManager from './QRCellSetsManager';
 
+
 const setItemIsReady = () => {}; // no op
 const setItemIsNotReady = () => {}; // no op
 const resetReadyItems = () => {}; // no op
 
-const CELL_SETS_DATA_TYPES = ['cells', 'cell-sets', 'expression-matrix'];
-
 const QRY_PREDICTION_KEY = 'Prediction';
 const QRY_LABEL_KEY = 'Label';
 const REF_CELL_TYPE_KEY = 'Cell Type';
-
 
 /**
  * A subscriber wrapper around the SetsManager component
@@ -67,8 +59,6 @@ export default function QRCellSetsManagerSubscriber(props) {
     removeGridComponent,
     theme,
     title = 'Anchor Set View',
-    refDiffGeneScoreThreshold = 15,
-    qryDiffGeneScoreThreshold = 15,
   } = props;
 
   const loaders = useLoaders();
@@ -95,11 +85,8 @@ export default function QRCellSetsManagerSubscriber(props) {
   const modelIteration = qryValues.modelApiState.iteration;
   const modelStatus = qryValues.modelApiState.status;
 
-  const [urls, addUrl, resetUrls] = useUrls();
-
   // Reset file URLs and loader progress when the dataset has changed.
   useEffect(() => {
-    resetUrls();
     resetReadyItems();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loaders, qryDataset, refDataset]);

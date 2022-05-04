@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useMemo } from 'react';
 import { scaleSequential } from "d3-scale";
 import { interpolateViridis, interpolatePlasma, interpolateRdBu, interpolateCool } from "d3-scale-chromatic";

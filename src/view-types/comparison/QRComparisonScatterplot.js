@@ -1,7 +1,11 @@
-/* eslint-disable */
 import React, { forwardRef } from 'react';
 import { COORDINATE_SYSTEM } from '@deck.gl/core'; // eslint-disable-line import/no-extraneous-dependencies
-import { PolygonLayer, TextLayer, ScatterplotLayer, PointCloudLayer, LineLayer } from '@deck.gl/layers'; // eslint-disable-line import/no-extraneous-dependencies
+import {
+  PolygonLayer,
+  TextLayer,
+  ScatterplotLayer,
+  LineLayer,
+} from '@deck.gl/layers'; // eslint-disable-line import/no-extraneous-dependencies
 import { HeatmapLayer } from '@deck.gl/aggregation-layers'; // eslint-disable-line import/no-extraneous-dependencies
 import { DataFilterExtension } from '@deck.gl/extensions';
 import { forceSimulation } from 'd3-force';
@@ -23,19 +27,6 @@ const LABEL_FONT_FAMILY = "-apple-system, 'Helvetica Neue', Arial, sans-serif";
 const NUM_FORCE_SIMULATION_TICKS = 100;
 const LABEL_UPDATE_ZOOM_DELTA = 0.25;
 
-// Default getter function props.
-const makeDefaultGetCellPosition = (mapping, zVal) => (cellEntry) => {
-  const { mappings } = cellEntry[1];
-  if (!(mapping in mappings)) {
-    const available = Object.keys(mappings).map(s => `"${s}"`).join(', ');
-    throw new Error(`Expected to find "${mapping}", but available mappings are: ${available}`);
-  }
-  const mappedCell = mappings[mapping];
-  // The negative applied to the y-axis is because
-  // graphics rendering has the y-axis positive going south.
-  return [mappedCell[0], -mappedCell[1], zVal];
-};
-const makeDefaultGetCellCoords = mapping => cell => cell.mappings[mapping];
 const makeDefaultGetCellColors = (cellColors, qryCellsIndex, theme) => (cellEntry, { index }) => {
   const [r, g, b, a] = (cellColors && qryCellsIndex && cellColors.get(qryCellsIndex[index])) || getDefaultColor(theme);
   return [r, g, b, 255 * (a || 1)];
@@ -72,8 +63,6 @@ const QR_COLORS = {
  * @param {function} props.setCellSelection
  * @param {function} props.setCellHighlight
  * @param {function} props.updateViewInfo
- * @param {function} props.onToolChange Callback for tool changes
- * (lasso/pan/rectangle selection tools).
  * @param {function} props.onCellClick Getter function for cell layer onClick.
  */
 class QRComparisonScatterplot extends AbstractSpatialOrScatterplot {
