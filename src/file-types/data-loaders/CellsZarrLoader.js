@@ -1,10 +1,11 @@
-/* eslint-disable */
-import { LoaderResult, AbstractTwoStepLoader } from 'vitessce';
+import {
+  LoaderResult,
+  AbstractTwoStepLoader
+} from 'vitessce';
 import { InternMap } from 'internmap';
 import DataSourceFetchError from '../errors/DataSourceFetchError';
 import { qryAnnDataOptions, refAnnDataOptions } from '../../polyphony-view-config';
 
-const EMBEDDING_SCALE_FACTOR = 5000;
 
 const DTYPES = {
   COLUMN_NUMERIC: 'columnNumeric',

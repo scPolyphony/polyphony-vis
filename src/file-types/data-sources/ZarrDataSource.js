@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { HTTPStore, KeyError } from 'zarr';
 
 /**

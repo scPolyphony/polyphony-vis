@@ -9,7 +9,7 @@ import union from 'lodash/union';
 import {
   LoaderNotFoundError,
 } from '../file-types/errors/index';
-import { dataToCellSetsTree } from '../file-types/data-loaders/CellSetsZarrLoader';
+import { dataToCellSetsTree } from './cell-set-utils';
 import { PALETTE } from './utils';
 
 
