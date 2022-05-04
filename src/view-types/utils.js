@@ -235,6 +235,22 @@ export function nodeToHeight(currNode, level = 0) {
 }
 
 /**
+ * Get the size associated with a particular node.
+ * Recursive.
+ * @param {object} currNode A node object.
+ * @returns {number} The length of all the node's children
+ */
+ export function getNodeLength(currNode) {
+  if (!currNode) {
+    return 0;
+  }
+  if (!currNode.children) {
+    return (currNode.set?.length || 0);
+  }
+  return currNode.children.reduce((acc, curr) => acc + getNodeLength(curr), 0);
+}
+
+/**
  * Get the set associated with a particular node.
  * Recursive.
  * @param {object} currNode A node object.
@@ -573,4 +589,31 @@ export function getPointOpacity(zoom, xRange, yRange, width, height, numCells, a
   const alpha = ((rho * W * H) / N) * (Y0 / Y) * (X0 / X);
   const pointOpacity = clamp(alpha, 1.01 / 255, 1.0);
   return pointOpacity;
+}
+
+export const PATH_SEP = '___';
+
+export function pathToKey(path) {
+  return path.join(PATH_SEP);
+}
+
+/**
+ * For convenience, get an object with information required
+ * to render a node as a component.
+ * @param {object} node A node to be rendered.
+ * @returns {object} An object containing properties required
+ * by the TreeNode render functions.
+ */
+ export function nodeToRenderProps(node, path, cellSetColor) {
+  const level = path.length - 1;
+  return {
+    title: node.name,
+    nodeKey: pathToKey(path),
+    path,
+    size: getNodeLength(node),
+    color: cellSetColor?.find(d => isEqual(d.path, path))?.color,
+    level,
+    isLeaf: (!node.children || node.children.length === 0) && Boolean(node.set),
+    height: nodeToHeight(node),
+  };
 }

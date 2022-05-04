@@ -10,11 +10,13 @@ import {
   useLoaders,
   useSetWarning,
   useDatasetUids,
-} from '../../app/state/hooks';
-import { COMPONENT_COORDINATION_TYPES } from '../../app/state/coordination';
-import QRScores from './QRScores';
-import TitleInfo from '../TitleInfo';
-import { useUrls, useReady } from '../hooks';
+} from 'vitessce';
+
+import {
+  PluginViewType,
+  PLUGIN_COMPONENT_COORDINATION_TYPES,
+} from '../../constants';
+import { mergeCellSets, PALETTE } from '../utils';
 import {
   useAnnDataStatic, useAnnDataDynamic, useAnnDataIndices,
   useDiffGeneNames, useCellSetsTree,
@@ -23,10 +25,12 @@ import {
   useCompressedAnchors,
   useSeperatedGenes,
   useGeneSelection,
-  useExpressionAttrs
+  useExpressionAttrs,
 } from '../data-hooks';
-import { Component } from '../../app/constants';
-import { mergeCellSets, PALETTE } from '../utils';
+import { useUrls, useReady } from '../hooks';
+import TitleInfo from '../TitleInfo';
+import QRScores from './QRScores';
+
 
 const setItemIsReady = () => {}; // no op
 const setItemIsNotReady = () => {}; // no op
@@ -64,7 +68,7 @@ export default function QRScoresSubscriber(props) {
 
   // Get "props" from the coordination space.
   const [cValues, cSetters] = useMultiDatasetCoordination(
-    COMPONENT_COORDINATION_TYPES[Component.QR_CELL_SETS],
+    PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_SCORES],
     coordinationScopes,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];

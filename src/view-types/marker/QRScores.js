@@ -3,14 +3,7 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import * as _ from 'lodash';
 import isEqual from 'lodash/isEqual';
-import Tree from './Tree';
-import TreeNode from './TreeNode';
-import { PlusButton, SetOperationButtons } from './SetsManagerButtons';
-import { nodeToRenderProps } from './cell-set-utils';
-import { getDefaultColor } from '../utils';
-import { pathToKey } from './utils';
-import { useVitessceContainer } from '../hooks';
-
+import range from 'lodash/range';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -20,7 +13,14 @@ import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import MoreVert from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import range from 'lodash/range';
+
+import {
+  pathToKey,
+  getDefaultColor,
+  nodeToRenderProps,
+} from '../utils';
+import { useVitessceContainer } from '../hooks';
+
 
 const barWidth = 130;
 

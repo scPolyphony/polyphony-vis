@@ -268,7 +268,7 @@ export const myViewConfig = {
             w: 5,
             h: 6,
           },
-          /*{
+          {
             component: 'qrScores',
             coordinationScopes: {
               dataset: ['REFERENCE', 'QUERY'],
@@ -286,7 +286,7 @@ export const myViewConfig = {
             y: 7,
             w: 5,
             h: 5,
-          },*/
+          },
           {
             component: 'qrComparisonScatterplot',
             coordinationScopes: {
