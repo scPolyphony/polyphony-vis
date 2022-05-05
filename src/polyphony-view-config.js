@@ -85,7 +85,7 @@ export const qryAnnDataOptions = {
   },
 };
 
-export const myViewConfig = {
+export const viewConfig = {
     name: 'Polyphony',
     version: '1.0.9',
     description: 'Fine-tune the Polyphony model by selecting or rejecting anchor cell sets.',
