@@ -1,0 +1,515 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  margin: 0;
+}
+
+.vitessce-container.vitessce-theme-light {
+  height: max(100%, 100vh);
+  width: 100%;
+
+  /* Bootstrap overrides */
+  .card-body {
+    padding: auto !important;
+  }
+  .my-2, .mt-2 {
+    margin-top: auto !important;
+  }
+
+  .my-2, .mb-2 {
+    margin-bottom: auto !important;
+  }
+
+  .my-3, .mt-3 {
+    border-radius: 0 !important;
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+  }
+
+  /* App overrides */
+  .loading-indicator-backdrop {
+    border-radius: 0 !important;
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+  }
+  .card {
+    border-radius: 0;
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+    border: 2px solid rgba(215, 215, 215, 0.6);
+  }
+  .bg-primary, .bg-secondary {
+    background-color: #fff;
+  }
+
+  /* Cell Sets component */
+  .qrCellSets {
+    border: 0px solid blue;
+    margin-top: 10px;
+  }
+  .qrCellSetsTableContainer {
+    width: 100%;
+    display: flex;
+  }
+  .qrCellSetsTableBlock {
+    // max-height: 390px;
+    overflow-y: scroll;
+    // border-bottom: 2px rgba(110, 110, 110, 0.5) solid;
+    // margin: 10px 0px;
+  }
+
+  .qrCellSetsTableLeft {
+    flex: 50%;
+    .qrCellSetsTableRow {
+      width: 100%;
+      overflow-y: hidden;
+      // margin-bottom: -6px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .qrCellSetsTableRight {
+    flex: 50%;
+    overflow-x: auto;
+    overflow-y: visible;
+    .qrCellSetsTableRow {
+      width: 100%;
+      overflow-y: visible;
+      margin-bottom: 6px;
+    }
+  }
+
+  .qrCellSetsTableRow {
+    display: inline-block;
+    white-space: nowrap;
+    height: 30px;
+    border: 0px solid green;
+    .colArrow {
+      width: 20px;
+    }
+    .colName {
+      width: 100px;
+      button {
+        font-weight: normal;
+        border: 0;
+        margin: 0;
+        background: transparent;
+        display: inline-block;
+      }
+    }
+    .colPrediction,
+    .colSimilarity {
+      width: 120px;
+      .predictionBar {
+        float: left;
+        height: 20px;
+        margin-top: 5px;
+      }
+      .predictionBarInner {
+        float: left;
+        height: 10px;
+        top: 10px;
+        position: absolute;
+        border-radius: 5px;
+        background-color: rgb(110, 110, 110);
+      }
+      .predictionBarOutter {
+        background-color: #c0c0c0;
+        height: 10px;
+        position: absolute;
+        top: 10px;
+        border-radius: 5px;
+      }
+    }
+    .colEdit {
+      width: 20px;
+      margin-right: 20px;
+    }
+    .colTopGenes {
+      width: 60px;
+    }
+    .colGeneResult {
+      height: 30px;
+      overflow: visible;
+    }
+    .colBold {
+      font-weight: bold;
+    }
+  }
+  .qrCellSetsTableArrow {
+    display: inline-block;
+    height: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .qrCellSetsTableHead {
+    vertical-align: top;
+    display: inline-block;
+    height: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-left: 10px;
+  }
+  .qrCellSetsTableHeadText {
+    vertical-align: inherit;
+    font-weight: 600;
+  }
+  .qrCellSetsTableHeadSort {
+    margin-right: 2px;
+    svg {
+      width: 22px;
+      height: 24px;
+    }
+  }
+  .colPrediction, .colSimilarity {
+    .qrCellSetsTableHeadSort {
+      float: right;
+    }
+  }
+  .signifIconTooltip {
+    position: absolute;
+    height: 80px;
+    width: 200px;
+    text-align: left;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgba(110, 110, 110, 0.5);
+    z-index: 100;
+    top: 30px;
+    left: 0px;
+  }
+
+  .geneMatchContainer {
+    .geneMatchPercentage {
+      fill: none;
+      stroke-width: 5;
+      stroke-dasharray: 122.522;
+      stroke: #cecece;
+    }
+  }
+
+  .iconContainer {
+    overflow-y: visible;
+    overflow-x: visible;
+    position: relative;
+    display: flex;
+    .signifIconTooltip {
+      display: none;
+    }
+  }
+  .iconContainer:hover {
+    .signifIconTooltip {
+      display: block;
+    }
+  }
+
+  .geneIcon {
+    height: 30px;
+    width: 130px;
+    margin-right: 1px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    min-width: 12px;
+    position: relative;
+    overflow-x: visible;
+
+    .geneIconOuter {
+      position: absolute;
+      width: 130px;
+      border: 2px solid rgb(161, 161, 161);
+      border-top: 6px solid rgb(226, 226, 226);
+      border-radius: 5px;
+      left: 0px;
+      top: 0px;
+    }
+    .geneIconRef {
+      height: 6px;
+      background: #d28282;
+      position: absolute;
+      top: 0px;
+      left: 65px;
+      border-radius: 2px;
+    }
+    .geneIconQry {
+      height: 6px;
+      background: #75a273;
+      position: absolute;
+      top: 0px;
+      right: 64px;
+      border-radius: 2px;
+    }
+    .geneName {
+      text-align: center;
+      margin-top: 7px;
+      display: flex;
+      flex-direction: row;
+      .geneNameMiddle {
+        font-size: 14px !important;
+        width: 50%;
+        display: inline-block;
+        text-align: center;
+        overflow: visible;
+        height: 30px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      .geneTrisLeft, .geneTrisRight {
+        display: flex;
+        flex-direction: column;
+        width: 25%;
+        height: 30px;
+        margin-top: -19px;
+        justify-content: flex-end;
+        
+        .geneTriangle {
+          display: inline-block;
+          width: 100%;
+          height: 6px;
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+      .geneTrisLeft {
+        svg {
+          color: #75a273;
+        }
+      }
+      .geneTrisRight {
+        svg {
+          color: #d28282;
+        }
+      }
+    }
+  }
+  .geneIcon:hover {
+    .geneIconOuter {
+      background-color: #cecece;
+      opacity: 0.5;
+    }
+  }
+
+  .geneIcon.selected {
+    .geneIconOuter {
+      background-color: #c0c0c0;
+    }
+  }
+
+  /* Status component */
+  .qrStatus {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    & > div {
+      width: 25%;
+    }
+
+    .systemTitle {
+      font-size: 36px;
+      padding-left: 10px;
+    }
+
+    .qrStatusCompletion {
+      padding: 5px;
+      display: flex;
+      .qrStatusCompletionInfo {
+        padding: 2px;
+        font-size: 13px;
+        margin-left: 5px;
+        color: rgb(110, 110, 110);
+      }
+    }
+    .qrStatusInstructions {
+      padding: 7px;
+      font-size: 13px;
+      color: #1976d2;
+    }
+    .qrStatusModel {
+      margin-right: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    
+  }
+
+  .react-grid-item {
+    padding-right: 0;
+  }
+
+  .react-grid-item > .react-resizable-handle {
+    display: none;
+  }
+  .status-title {
+    display: none;
+  }
+  .status-card, .status-card .loading-indicator-backdrop {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  /* Supporting view borders */
+  .supporting-query-container {
+    border: 2px solid rgb(105, 105, 105);
+  }
+  .supporting-reference-container {
+    border: 2px solid rgb(211, 211, 211);
+  }
+
+  .qrTopGeneContainer {
+    margin: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .qrTopGeneColumn {
+      width: 130px;
+      margin-left: 10px;
+      height: 100%;
+      //overflow-y: scroll;
+      //overflow-x: visible;
+      .qrTopGeneHeader {
+        margin-bottom: 5px;
+      }
+    }
+
+    .qrTopGeneColumn.shared {
+      margin-right: 40px;
+    }
+    .qrTopGeneHeader {
+      font-weight: 600;
+    }
+  }
+
+  /* Info about the focus state and gene selection in the comparison view */
+  .qrComparisonViewFocusInfo {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    z-index: 100;
+    font-size: 12px !important;
+    color: black;
+    .focusItem:not(:first-child) {
+      margin-left: 5px;
+    }
+    .focusItem {
+      display: inline-block;
+      background-color: rgba(215, 215, 215, 0.6);
+      border-radius: 4px;
+      padding: 0 2px;
+      //box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      .focusKey {
+      }
+      .focusValue {
+      }
+    }
+  }
+
+  .qrComparisonViewLegend {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+    font-size: 12px !important;
+
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(215, 215, 215, 0.6);
+    border-radius: 4px;
+    padding: 4px;
+    //box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+
+    svg {
+      height: 15px;
+      width: 100px;
+    }
+    .continuousTitle {
+      font-weight: bold;
+    }
+    .continuousLabels {
+      position: relative;
+      display: inline-block;
+      width: 100px;
+      height: 15px;
+      font-size: 10px !important;
+      .continuousStart {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+      .continuousEnd {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    .categoricalLabels {
+      display: flex;
+      flex-direction: column;
+      .categoricalTitle {
+        font-weight: bold;
+      }
+      .categoricalItem {
+        span {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        span:first-child {
+          width: 10px;
+          height: 10px;
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+
+  .qrComparisonViewPresetButtons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    font-size: 12px !important;
+    button {
+      margin: 2px;
+      border: 0px solid gray;
+      border-radius: 2px;
+      background-color: rgba(215, 215, 215, 0.6);
+    }
+  }
+  .description {
+    padding: 5px;
+  }
+
+  .title {
+    background-color: rgba(215, 215, 215, 0.6);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+
+  .title-left {
+    padding-left: 5px;
+  }
+
+
+  .fullCircularProgress {
+    position: relative;
+  }
+
+}
