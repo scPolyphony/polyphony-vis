@@ -14,6 +14,8 @@ In this repository, run:
 npm run start
 ```
 
+Developed under Node v14.0.0 and NPM v6.14.16.
+
 ## Run [polyphony](https://github.com/scPolyphony/polyphony) (backend)
 
 In the root of the `polyphony` repository, run:
