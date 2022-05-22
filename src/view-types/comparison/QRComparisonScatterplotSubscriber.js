@@ -529,7 +529,7 @@ export default function QRComparisonScatterplotSubscriber(props) {
   return (
     <TitleInfo
       title={title}
-      info={isMainComparisonView ? `${qryCellsCountNice} ${pluralize('query cell', 'query cells', qryCellsCount)}, ${refCellsCountNice} ${pluralize('reference cell', 'reference cells', refCellsCount)}` : ''}
+      info={isMainComparisonView ? `${qryCellsCountNice} ${pluralize('query cell', 'query cells', qryCellsCount)} & ${refCellsCountNice} ${pluralize('reference cell', 'reference cells', refCellsCount)}` : ''}
       removeGridComponent={removeGridComponent}
       urls={urls}
       theme={theme}
