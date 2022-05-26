@@ -227,7 +227,7 @@ export default function QRComparisonScatterplotSubscriber(props) {
       let maxRefSize = 0;
       Object.keys(anchors).forEach(anchorType => {
         anchors[anchorType].forEach((anchorObj, i) => {
-          const refAnchorId = `${anchorObj.anchor_ref_id}`; // convert to string
+          const refAnchorId = `${anchorObj.reference_id}`; // convert to string
           const qryAnchorId = anchorObj.id;
 
           const qryCellIds = anchorObj.cells.map(c => c.cell_id);

@@ -61,7 +61,7 @@ export default class CellsZarrLoader extends AbstractTwoStepLoader {
 
     const { apiRoot } = this.options || {};
     this.anchorApi = `${apiRoot}/anchor`;
-    this.modelApi = `${apiRoot}/model_update`;
+    this.modelApi = `${apiRoot}/model`;
 
     this.data = {
       static: {},

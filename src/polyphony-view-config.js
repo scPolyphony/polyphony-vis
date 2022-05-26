@@ -1,10 +1,10 @@
 /* eslint-disable */
 
-const experiment = 'case-1';
+const experiment = 'test';
 
-const zarrPath = `http://localhost:7778/files/zarr/${experiment}`;
+const zarrPath = `http://localhost:7777/files/zarr/${experiment}`;
 // const zarrPath = 'http://3.86.7.210:8080/files/zarr';
-const apiRoot = 'http://localhost:7778/api';
+const apiRoot = 'http://localhost:7777/api';
 // const apiRoot = 'http://3.86.7.210:8080/api';
 
 export const refAnnDataOptions = {
@@ -62,7 +62,7 @@ export const qryAnnDataOptions = {
   },
   features: {
     prediction: {
-      path: 'obs/prediction'
+      path: 'obs/pred'
     },
     label: {
       path: 'obs/label'

@@ -470,7 +470,7 @@ export function useProcessedAnchorSets(
         result[anchorType] = {};
         anchors[anchorType].forEach((anchorObj, clusterIndex) => {
 
-          const refAnchorId = `${anchorObj.anchor_ref_id}`; // convert to string
+          const refAnchorId = `${anchorObj.reference_id}`; // convert to string
           const refClusterIndex = refDiffClusters.indexOf(refAnchorId);
           const refClusterTopGeneNames = refDiffGeneNames[refClusterIndex].slice(0, NUM_GENES);
           const refClusterAllGeneNames = refDiffGeneNames[refClusterIndex];
@@ -507,7 +507,7 @@ export function useProcessedAnchorSets(
               qry: (qryClusterAllGeneNames.indexOf(name) >= 0 ? qryClusterAllGeneNames.indexOf(name)+1 : null), // convert to 1-indexed?
               ref: (refClusterAllGeneNames.indexOf(name) >= 0 ? refClusterAllGeneNames.indexOf(name)+1 : null), // convert to 1-indexed?
             })),
-            latentDist: anchorObj.anchor_dist_median,
+            latentDist: anchorObj.dist_median,
             numCells: anchorObj.cells.length,
             predictionProportions: predictionPaths.map(path => {
               const [prefix, setName] = path;
@@ -539,7 +539,7 @@ export function useAnchorSetOfInterest(
     if (qryAnchorId && anchors && qryCellsIndex && qryEmbedding && refAnchorCluster) {
       const anchorGroup = Object.values(anchors).find(anchorSets => anchorSets.map(o => o.id).includes(qryAnchorId));
       const anchorObj = anchorGroup.find(o => o.id === qryAnchorId);
-      const refAnchorId = `${anchorObj.anchor_ref_id}`; // convert to string
+      const refAnchorId = `${anchorObj.reference_id}`; // convert to string
 
       const qryCellIds = anchorObj.cells.map(c => c.cell_id);
       const qryCellIndices = qryCellIds.map(cellId => qryCellsIndex.indexOf(cellId));
