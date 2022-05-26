@@ -36,7 +36,7 @@
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.1",
     "uuid": "^3.3.2",
-    "vitessce": "file:../../vitessce/vitessce/vitessce-1.1.20.tgz",
+    "vitessce": "^1.1.21",
     "zarr": "^0.5.1",
     "zustand": "^3.5.10"
   },

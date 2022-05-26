@@ -1,6 +1,8 @@
 # polyphony-vis
 
-This repository contains the frontend implementation for [Polyphony](https://github.com/ChengFR/polyphony), our interactive transfer-learning framework for reference-based single-cell data analysis.
+[![vitessce v1.1.21](https://img.shields.io/badge/vitessce-v1.1.21-49a5b7)](https://www.npmjs.com/package/vitessce/v/1.1.21)
+
+This repository contains the frontend implementation for [Polyphony](https://github.com/scPolyphony/polyphony), our interactive transfer-learning framework for reference-based single-cell data analysis.
 
 __polyphony-vis__ is implemented using the [Vitessce](http://vitessce.io) framework and its [plugin APIs](http://vitessce.io/docs/dev-plugins).
 
@@ -12,7 +14,9 @@ In this repository, run:
 npm run start
 ```
 
-## Run [polyphony](https://github.com/ChengFR/polyphony) (backend)
+Developed under Node v14.0.0 and NPM v6.14.16.
+
+## Run [polyphony](https://github.com/scPolyphony/polyphony) (backend)
 
 In the root of the `polyphony` repository, run:
 
