@@ -56,6 +56,7 @@ const REF_CELL_TYPE_KEY = 'Cell Type';
 export default function QRCellSetsManagerSubscriber(props) {
   const {
     coordinationScopes,
+    coordinationScopesBy,
     removeGridComponent,
     theme,
     title = 'Anchor Set View',
@@ -75,6 +76,7 @@ export default function QRCellSetsManagerSubscriber(props) {
   const [cValues, cSetters] = useMultiDatasetCoordination(
     PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_CELL_SETS],
     coordinationScopes,
+    coordinationScopesBy,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];
   const [refValues, refSetters] = [cValues[refScope], cSetters[refScope]];

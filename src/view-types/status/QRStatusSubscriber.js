@@ -40,6 +40,7 @@ const resetReadyItems = () => {}; // no op
 export default function QRStatusSubscriber(props) {
   const {
     coordinationScopes,
+    coordinationScopesBy,
     removeGridComponent,
     theme,
     title = 'Polyphony',
@@ -59,6 +60,7 @@ export default function QRStatusSubscriber(props) {
   const [cValues, cSetters] = useMultiDatasetCoordination(
     PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_STATUS],
     coordinationScopes,
+    coordinationScopesBy,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];
   const [refValues, refSetters] = [cValues[refScope], cSetters[refScope]];

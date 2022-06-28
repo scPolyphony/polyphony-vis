@@ -85,6 +85,7 @@ export default function QRComparisonScatterplotSubscriber(props) {
     qrySupportingUuid = null,
     refSupportingUuid = null,
     coordinationScopes,
+    coordinationScopesBy,
     removeGridComponent,
     theme,
     isMainComparisonView = false,
@@ -112,6 +113,7 @@ export default function QRComparisonScatterplotSubscriber(props) {
   const [cValues, cSetters] = useMultiDatasetCoordination(
     PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_COMPARISON_SCATTERPLOT],
     coordinationScopes,
+    coordinationScopesBy,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];
   const [refValues, refSetters] = [cValues[refScope], cSetters[refScope]];

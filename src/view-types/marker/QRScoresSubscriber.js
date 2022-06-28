@@ -45,6 +45,7 @@ const resetReadyItems = () => {}; // no op
 export default function QRScoresSubscriber(props) {
   const {
     coordinationScopes,
+    coordinationScopesBy,
     removeGridComponent,
     theme,
     title = 'Marker View',
@@ -64,6 +65,7 @@ export default function QRScoresSubscriber(props) {
   const [cValues, cSetters] = useMultiDatasetCoordination(
     PLUGIN_COMPONENT_COORDINATION_TYPES[PluginViewType.QR_SCORES],
     coordinationScopes,
+    coordinationScopesBy,
   );
   const [qryValues, qrySetters] = [cValues[qryScope], cSetters[qryScope]];
   const [refValues, refSetters] = [cValues[refScope], cSetters[refScope]];
