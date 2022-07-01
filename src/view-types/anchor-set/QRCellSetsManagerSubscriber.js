@@ -61,6 +61,8 @@ export default function QRCellSetsManagerSubscriber(props) {
     title = 'Anchor Set View',
   } = props;
 
+  console.time('___anchor_load___');
+
   const loaders = useLoaders();
   const setWarning = useSetWarning();
 
@@ -98,22 +100,6 @@ export default function QRCellSetsManagerSubscriber(props) {
   const qryOptions = qryLoader?.options;
   const refOptions = refLoader?.options;
 
-  const [anchors, anchorsStatus] = useAnchors(qryLoader, anchorIteration, setItemIsReady);
-  const nextUserSetName = useMemo(() => {
-    if(anchors && anchors.user_selection.length > 0) {
-      let nextIndex = 0;
-      let nextExists;
-      let potentialNext;
-      do {
-        potentialNext = `user-${nextIndex}`;
-        nextExists = anchors.user_selection.find(o => o.id === potentialNext) !== undefined;
-        nextIndex += 1;
-      } while(nextExists);
-      return potentialNext;
-    }
-    return 'user-0';
-  }, [anchors]);
-
   // Load the data.
   // Cell IDs
   const [qryCellsIndex, qryGenesIndex, qryIndicesStatus] = useAnnDataIndices(loaders, qryDataset, setItemIsReady, true);
@@ -142,6 +128,27 @@ export default function QRCellSetsManagerSubscriber(props) {
   const [refDiffGeneNameIndices, refDiffGeneNamesStatus] = useAnnDataDynamic(loaders, refDataset, refOptions?.differentialGenes?.names?.path, 'columnNumeric', modelIteration, setItemIsReady, false);
   const [refDiffGeneScores, refDiffGeneScoresStatus] = useAnnDataDynamic(loaders, refDataset, refOptions?.differentialGenes?.scores?.path, 'columnNumeric', modelIteration, setItemIsReady, false);
   const [refDiffClusters, refDiffClustersStatus] = useAnnDataDynamic(loaders, refDataset, refOptions?.differentialGenes?.clusters?.path, 'columnString', modelIteration, setItemIsReady, false);
+  
+  console.timeEnd('___anchor_load___');
+
+  console.time('___anchor_process___');
+
+
+  const [anchors, anchorsStatus] = useAnchors(qryLoader, anchorIteration, setItemIsReady);
+  const nextUserSetName = useMemo(() => {
+    if(anchors && anchors.user_selection.length > 0) {
+      let nextIndex = 0;
+      let nextExists;
+      let potentialNext;
+      do {
+        potentialNext = `user-${nextIndex}`;
+        nextExists = anchors.user_selection.find(o => o.id === potentialNext) !== undefined;
+        nextIndex += 1;
+      } while(nextExists);
+      return potentialNext;
+    }
+    return 'user-0';
+  }, [anchors]);
 
   const refDiffGeneNames = useDiffGeneNames(refGenesIndex, refDiffGeneNameIndices);
 
@@ -288,6 +295,8 @@ export default function QRCellSetsManagerSubscriber(props) {
       />
     );
   }, [qryTopGenesLists, onFocusAnchors, onHighlightAnchors]); 
+  
+  console.timeEnd('___anchor_process___');
 
   return (
     <TitleInfo

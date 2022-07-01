@@ -50,6 +50,8 @@ export default function QRScoresSubscriber(props) {
     title = 'Marker View',
   } = props;
 
+  console.time('___marker_load___');
+
   const loaders = useLoaders();
   const setWarning = useSetWarning();
 
@@ -87,8 +89,6 @@ export default function QRScoresSubscriber(props) {
   const qryOptions = qryLoader?.options;
   const refOptions = refLoader?.options;
 
-  const [anchors, anchorsStatus] = useAnchors(qryLoader, anchorIteration, setItemIsReady);
-
   // Load the data.
   // Cell IDs
   const [qryCellsIndex, qryGenesIndex, qryIndicesStatus] = useAnnDataIndices(loaders, qryDataset, setItemIsReady, true);
@@ -108,6 +108,11 @@ export default function QRScoresSubscriber(props) {
   const [refDiffGeneNameIndices, refDiffGeneNamesStatus] = useAnnDataDynamic(loaders, refDataset, refOptions?.differentialGenes?.names?.path, 'columnNumeric', modelIteration, setItemIsReady, false);
   const [refDiffGeneScores, refDiffGeneScoresStatus] = useAnnDataDynamic(loaders, refDataset, refOptions?.differentialGenes?.scores?.path, 'columnNumeric', modelIteration, setItemIsReady, false);
   const [refDiffClusters, refDiffClustersStatus] = useAnnDataDynamic(loaders, refDataset, refOptions?.differentialGenes?.clusters?.path, 'columnString', modelIteration, setItemIsReady, false);
+
+  console.timeEnd('___marker_load___');
+  console.time('___marker_process___');
+
+  const [anchors, anchorsStatus] = useAnchors(qryLoader, anchorIteration, setItemIsReady);
 
   const [qryExpressionData, qryLoadedGene, qryExpressionDataStatus] = useGeneSelection(
     loaders, qryDataset, setItemIsReady, false, qryValues.geneSelection, setItemIsNotReady,
@@ -156,6 +161,8 @@ export default function QRScoresSubscriber(props) {
   }, [anchorFocused]);
 
   const titleWithFocusedSet = `${title} ${(anchorFocused ? '(' + anchorFocused.id + ')' : '')}`;
+
+  console.timeEnd('___marker_process___');
 
   return (
     <TitleInfo

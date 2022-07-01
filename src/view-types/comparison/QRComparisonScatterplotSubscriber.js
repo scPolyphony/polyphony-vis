@@ -96,6 +96,8 @@ export default function QRComparisonScatterplotSubscriber(props) {
     averageFillDensity,
   } = props;
 
+  console.time('___comparison_load___');
+
   const loaders = useLoaders();
   const setComponentHover = useSetComponentHover();
   const setComponentViewInfo = useSetComponentViewInfo(uuid);
@@ -206,6 +208,8 @@ export default function QRComparisonScatterplotSubscriber(props) {
     refDiffGeneNamesStatus, refDiffGeneScoresStatus, refDiffClustersStatus,
   ]);
   
+  console.timeEnd('___comparison_load___');
+  console.time('___comparison_process___');
 
   const qryTopGenesLists = useProcessedAnchorSets(
     anchors, refDiffGeneNames, refDiffGeneScores, refDiffClusters, qryPrediction, qryCellsIndex, qryCellSets, qryValues.cellSetColor, "Prediction"
@@ -525,6 +529,8 @@ export default function QRComparisonScatterplotSubscriber(props) {
 
   const qryCellsCountNice = qryCellsCount ? (qryCellsCount).toLocaleString("en-US") : "";
   const refCellsCountNice = refCellsCount ? (refCellsCount).toLocaleString("en-US") : "";
+
+  console.timeEnd('___comparison_process___');
 
   return (
     <TitleInfo
