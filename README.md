@@ -2,7 +2,7 @@
 
 # polyphony-vis
 
-This repository contains the frontend implementation for [Polyphony](https://github.com/scPolyphony/polyphony), our [interactive transfer-learning framework for reference-based single-cell data analysis](https://osf.io/b76nt/).
+This repository contains the frontend implementation for Polyphony, our [interactive transfer-learning framework for reference-based single-cell data analysis](https://osf.io/b76nt/).
 
 __polyphony-vis__ is implemented using the 
 Vitessce framework and its [plugin APIs](http://vitessce.io/docs/dev-plugins). [![vitessce v1.1.21](https://img.shields.io/badge/vitessce-v1.1.21-49a5b7)](https://www.npmjs.com/package/vitessce/v/1.1.21)
