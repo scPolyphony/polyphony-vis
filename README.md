@@ -150,10 +150,10 @@ Object `{ iteration: 1, status: 'success', message: null }`.
 To cite Polyphony in your work, please use:
 
 ```bibtex
-@techreport{cheng2022polyphony,
+@article{cheng2022polyphony,
   title = {Polyphony: an {Interactive} {Transfer} {Learning} {Framework} for {Single}-{Cell} {Data} {Analysis}},
   author = {Cheng, Furui and Keller, Mark S. and Qu, Huamin and Gehlenborg, Nils and Wang, Qianwen},
-  institution = {OSF Preprints},
+  journal = {OSF Preprints},
   year = {2022},
   month = apr,
   doi = {10.31219/osf.io/b76nt},
