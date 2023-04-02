@@ -19,13 +19,34 @@ Developed under Node v14.0.0 and NPM v6.14.16.
 
 ## Run [polyphony](https://github.com/scPolyphony/polyphony) (backend)
 
+Currently works with [`polyphony/dc09630`](https://github.com/scPolyphony/polyphony/tree/dc09630b230b84ec31b0597a2093045bc9b22725)
+
+### Setup
+
+Clone the https://github.com/scPolyphony/polyphony repository, then:
+
+```sh
+cd polyphony
+git checkout dc09630
+mamba env create -f environment.yml # or conda
+conda activate polyphony-env
+pip install -e .
+mkdir data
+```
+
+### Run
+
 In the root of the `polyphony` repository, run:
 
 ```sh
+conda activate polyphony-env
 polyphony --experiment case-1 --save --load_exist --port 7778
 ```
 
-Currently works with [`polyphony/069400`](https://github.com/scPolyphony/polyphony/tree/069400a913ea51b864b3d35f4179f999780912f6) (working to adapt to the refactored [`polyphony/main`](https://github.com/scPolyphony/polyphony) in [`polyphony-vis/furui/dataloader-update`](https://github.com/scPolyphony/polyphony-vis/tree/furui/dataloader-update)).
+
+<!--(working to adapt to the refactored [`polyphony/main`](https://github.com/scPolyphony/polyphony) in [`polyphony-vis/furui/dataloader-update`](https://github.com/scPolyphony/polyphony-vis/tree/furui/dataloader-update)).-->
+
+
 
 ## Documentation
 
